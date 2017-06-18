@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: ch.qos.logback:logback-classic:1.0.0">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.0.0/logback-classic-1.0.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
