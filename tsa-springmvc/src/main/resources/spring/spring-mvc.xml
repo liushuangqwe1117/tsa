@@ -29,20 +29,50 @@
     <!-- 此默认实例化了HandlerMapping和HandlerAdaptor及其他对象，参考：org.springframework.web.servlet.config.MvcNamespaceHandler -->
     <!--
         配置属性说明：
-        message-codes-resolver:数据校验时错误解析器，实现org.springframework.validation.MessageCodesResolver接口
+        message-codes-resolver:
+            数据校验时错误解析器，实现org.springframework.validation.MessageCodesResolver接口，一般默认实现就可以
         enable-matrix-variables:
             Matrix variables can appear in any path segment, each matrix variable separated with a ";" (semicolon).
             For example "/cars;color=red;year=2012". By default they're removed from the URL. If this property
             is set to true, matrix variables are not removed from the URL, and the request mapping pattern
             must use URI variable in path segments where matrix variables are expected. For example "/{cars}".
             Matrix variables can then be injected into a controller method with @MatrixVariable.
-        ignore-default-model-on-redirect:
+        ignore-default-model-on-redirect:默认的设置为false
+            By default, the content of the "default" model is used both during rendering and redirect scenarios.
+            Alternatively a controller method can declare a RedirectAttributes argument and use it to provide attributes
+            for a redirect. Setting this flag to true ensures the "default" model is never used in a redirect scenario
+            even if a RedirectAttributes argument is not declared. Setting it to false means the "default" model
+            may be used in a redirect if the controller method doesn't declare a RedirectAttributes argument.
+            The default setting is false but new applications should consider setting it to true.
+            中文理解为：如果为重定向，是否使用默认模型
+            举例说明：参考com.tsa.springmvc.controller.ParamTypeConvertController.save
+                在save方法中添加了 model.addAttribute("test","1");
+                如果方法中没有RedirectAttributes参数且annotation-driven中的ignore-default-model-on-redirect设置为false
+                则在重定向时spring会自动将test=1附加到url后面，既最候重定向的地址为http://localhost:8080/paramtype/edit?test=1
      -->
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"
                            validator="validator"
                            conversion-service="conversionService"
-                           enable-matrix-variables="true">
+                           enable-matrix-variables="true"
+                           ignore-default-model-on-redirect="true">
 
+        <!--<mvc:async-support default-timeout="" task-executor="" /> -->
+
+        <!-- 自定义参数解析器 -->
+        <!--<mvc:argument-resolvers>
+            <bean class="" />
+        </mvc:argument-resolvers>-->
+
+        <!-- 自定义消息转换器 HttpMessageConverter -->
+        <!--<mvc:message-converters register-defaults="true">
+            <bean class="" />
+        </mvc:message-converters>
+        -->
+
+        <!--<mvc:path-matching path-helper="" path-matcher="" registered-suffixes-only="" suffix-pattern="" trailing-slash="" />-->
+        <!--<mvc:return-value-handlers>
+            <bean class="" />
+        </mvc:return-value-handlers>-->
     </mvc:annotation-driven>
 
     <!-- 数据校验器,通过annotation-driven对象注入到相关对象中 -->

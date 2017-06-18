@@ -18,7 +18,7 @@
         ${pageTipMessageCode}
     </c:if>
     <br/>
-    <form:form action="${pageContext.request.contextPath}/tcc/save" method="post" commandName="user">
+    <form:form action="${pageContext.request.contextPath}/paramtype/save" method="post" commandName="user">
         姓名：<form:input path="name" /><br/>
         年龄：<form:input path="age" /><br/>
         生日：<form:input path="birthDay" /><br/>
