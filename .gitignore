@@ -14,14 +14,12 @@
 #eclipse ide
 /.project
 /.classpath
-/.project
 /.settings/
 
 
 #idea ide
 /.idea/
 *.iml
-/build/
 
 #Package Files
 *.war
