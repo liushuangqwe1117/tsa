@@ -28,14 +28,20 @@
 
     <!-- 此默认实例化了HandlerMapping和HandlerAdaptor及其他对象，参考：org.springframework.web.servlet.config.MvcNamespaceHandler -->
     <!--
-        其他未配置属性说明：
+        配置属性说明：
         message-codes-resolver:数据校验时错误解析器，实现org.springframework.validation.MessageCodesResolver接口
         enable-matrix-variables:
+            Matrix variables can appear in any path segment, each matrix variable separated with a ";" (semicolon).
+            For example "/cars;color=red;year=2012". By default they're removed from the URL. If this property
+            is set to true, matrix variables are not removed from the URL, and the request mapping pattern
+            must use URI variable in path segments where matrix variables are expected. For example "/{cars}".
+            Matrix variables can then be injected into a controller method with @MatrixVariable.
         ignore-default-model-on-redirect:
      -->
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"
                            validator="validator"
-                           conversion-service="conversionService">
+                           conversion-service="conversionService"
+                           enable-matrix-variables="true">
 
     </mvc:annotation-driven>
 
@@ -58,6 +64,10 @@
                 <bean class="com.tsa.springmvc.converter.StringToDateConverter" />
             </set>
         </property>
+        <!-- 注入自定义格式化类，实现接口org.springframework.format.Formatter -->
+        <!--<property name="formatters">
+            <set></set>
+        </property>-->
     </bean>
 
     <!-- 内容协商管理器，自己本身不处理业务逻辑，只是跟扩展名将业务处理交给合适的处理器进行处理  -->
@@ -93,7 +103,11 @@
     <!-- 可以直接映射请求路径与视图，不需要实现控制类 -->
     <mvc:view-controller path="/" view-name="redirect:/index" />
 
-    <!-- 处理静态资源，采用容器默认的servlet处理器 -->
+    <!-- 采用容器默认的servlet处理器 -->
+    <!-- 当在web.xml中 DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源 -->
     <mvc:default-servlet-handler/>
+
+    <!-- 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
 </beans>

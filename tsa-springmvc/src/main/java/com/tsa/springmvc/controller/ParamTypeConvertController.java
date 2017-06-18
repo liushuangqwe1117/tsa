@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 
 @Controller
-@RequestMapping("/tcc")
+@RequestMapping("/paramtype")
 public class ParamTypeConvertController {
 
     public static final String REDIRECT = "redirect:";
