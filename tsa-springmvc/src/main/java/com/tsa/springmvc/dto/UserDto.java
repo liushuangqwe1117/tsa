@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class UserDto extends BaseDto {
 
+    private String id;
     private String name;
     private Integer age;
     private Date birthDay;
@@ -17,6 +18,14 @@ public class UserDto extends BaseDto {
      * 将通过自定义Formatter转换器来转换，所以不重载toString方法
      */
     private PhoneNumber phoneNumber;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public PhoneNumber getPhoneNumber() {
         return phoneNumber;
