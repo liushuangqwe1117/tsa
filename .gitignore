@@ -11,6 +11,7 @@
 #gradle
 /build/
 /tsa-springmvc/build/
+/tsa-log/build/
 
 #eclipse ide
 /.project
@@ -21,6 +22,7 @@
 #idea ide
 /.idea/
 /tsa-springmvc/.idea/
+/tsa-log/.idea/
 *.iml
 
 #Package Files
