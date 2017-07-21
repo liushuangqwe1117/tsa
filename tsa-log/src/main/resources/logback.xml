@@ -44,8 +44,8 @@ scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没�
     -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">　　
         <encoder>
-            <!--参考：https://logback.qos.ch/manual/layouts.html-->　　
-            <pattern>[%contextName] [%thread] %-5level %logger{35} [%c:%L] - %msg %n</pattern>　　　　　
+            <!--参考：https://logback.qos.ch/manual/layouts.html-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%contextName] [%thread] %-5level %logger [%file:%line] - %msg%n　</pattern>
         </encoder>
     </appender>
 
@@ -95,7 +95,7 @@ scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没�
             <maxHistory>30</maxHistory>　　　　　　
         </rollingPolicy>　　　　　　　　　　　　
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">　　　　　　　　　　　　　　
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>　　　　　　　　　　　　
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%contextName] [%thread] %-5level %logger [%file:%line] - %msg%n　</pattern>
         </encoder>　　　　　　
     </appender>
 
@@ -110,10 +110,10 @@ scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没�
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize><!-- or whenever the file size reaches 50MB -->
             </timeBasedFileNamingAndTriggeringPolicy>
-             <maxHistory>5</maxHistory>
+            <maxHistory>5</maxHistory>
         </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">　　　　　　　　　　　　　
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>　　　　　　　　　　　　
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">　　　
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%contextName] [%thread] %-5level %logger [%file:%line] - %msg%n　</pattern>
         </encoder>　　　　　　　　
     </appender>
 
